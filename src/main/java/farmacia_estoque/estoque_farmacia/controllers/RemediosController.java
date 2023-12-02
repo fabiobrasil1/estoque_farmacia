@@ -9,9 +9,8 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/remedios")
 public class RemediosController {
   @PostMapping
-  public String cadastrarRemedio(@RequestBody String json) {
-    System.out.println(json);
-    return json;
-
+  public String cadastrar(@RequestBody DadosCadastrarRemedio dados) {
+    System.out.println(dados);
+    return dados.toString();
   }
 }
