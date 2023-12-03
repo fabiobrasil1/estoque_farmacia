@@ -1,4 +1,4 @@
-package farmacia_estoque.estoque_farmacia;
+package farmacia_estoque.infra;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
