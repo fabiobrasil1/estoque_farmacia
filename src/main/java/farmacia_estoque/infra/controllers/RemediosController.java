@@ -18,7 +18,8 @@ public class RemediosController {
 
   @PostMapping
   public String cadastrar(@RequestBody DadosCadastrarRemedio dados) {
-    cadastrarRemediosUC.execute(dados);
+   cadastrarRemediosUC.execute(dados);
+
     return dados.toString();
   }
 }

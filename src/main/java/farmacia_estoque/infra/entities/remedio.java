@@ -1,6 +1,9 @@
 package farmacia_estoque.infra.entities;
 
 import farmacia_estoque.infra.controllers.dtos.DadosCadastrarRemedio;
+
+import java.time.LocalDate;
+
 import farmacia_estoque.infra.Enum.Laboratorio;
 import farmacia_estoque.infra.Enum.Via;
 import jakarta.persistence.Entity;
@@ -37,9 +40,8 @@ public class Remedio {
   
   private String nome;
   private String lote;
-  private String quantidade;
-  private String valor;
-  private  String validade;
+  private int quantidade;
+  private  LocalDate validade;
 
   @Enumerated(EnumType.STRING)
   private Via via;

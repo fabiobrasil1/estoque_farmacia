@@ -13,6 +13,10 @@ public class CadastrarRemedios_usecase {
   private RemedioRepository repository;
 
   public void execute(DadosCadastrarRemedio dados){
-    repository.save(new Remedio(dados));
+    try {
+      repository.save(new Remedio(dados));
+    } catch (Exception e) {
+      throw e;
+    }
   }
 }
