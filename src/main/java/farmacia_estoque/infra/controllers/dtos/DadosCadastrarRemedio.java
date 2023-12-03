@@ -5,9 +5,9 @@ import farmacia_estoque.infra.Enum.Via;
 
 public record DadosCadastrarRemedio(
   String nome,
+  Via via,
   String lote,
   String quantidade,
-  Via via,
-  String valor,
+  String validade,
   Laboratorio laboratorio ) {
 }

@@ -1,5 +1,6 @@
 package farmacia_estoque.infra.entities;
 
+import farmacia_estoque.infra.controllers.dtos.DadosCadastrarRemedio;
 import farmacia_estoque.infra.Enum.Laboratorio;
 import farmacia_estoque.infra.Enum.Via;
 import jakarta.persistence.Entity;
@@ -20,7 +21,16 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @EqualsAndHashCode(of = "id")
-public class remedio {
+public class Remedio {
+  public Remedio(DadosCadastrarRemedio dados){
+    this.nome = dados.nome();
+    this.via = dados.via();
+    this.lote = dados.lote();
+    this.quantidade = dados.quantidade();
+    this.validade = dados.validade();
+    this.laboratorio = dados.laboratorio();
+  }
+
   @Id 
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
