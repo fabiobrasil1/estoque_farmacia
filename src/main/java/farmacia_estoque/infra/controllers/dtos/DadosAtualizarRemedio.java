@@ -1,0 +1,30 @@
+package farmacia_estoque.infra.controllers.dtos;
+
+import java.time.LocalDate;
+
+import farmacia_estoque.infra.Enum.Laboratorio;
+import farmacia_estoque.infra.Enum.Via;
+import io.micrometer.common.lang.NonNull;
+import jakarta.persistence.Enumerated;
+import jakarta.validation.constraints.Future;
+import jakarta.validation.constraints.NotBlank;
+
+public record DadosAtualizarRemedio(
+  @NonNull
+  Long id,
+
+  @NotBlank
+  String nome,
+
+  @Enumerated
+  Via via,
+  String lote,
+  int quantidade,
+  
+  @Future
+  LocalDate validade,
+
+  @Enumerated
+  Laboratorio laboratorio ) 
+ {
+}

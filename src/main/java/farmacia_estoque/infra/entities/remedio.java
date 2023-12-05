@@ -1,5 +1,6 @@
 package farmacia_estoque.infra.entities;
 
+import farmacia_estoque.infra.controllers.dtos.DadosAtualizarRemedio;
 import farmacia_estoque.infra.controllers.dtos.DadosCadastrarRemedio;
 
 import java.time.LocalDate;
@@ -13,6 +14,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import jakarta.validation.Valid;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -48,4 +50,25 @@ public class Remedio {
 
   @Enumerated(EnumType.STRING)
   private Laboratorio laboratorio;
+
+  public void atualizarInformacoes (@Valid DadosAtualizarRemedio dados){
+    if (dados.nome() != null) {
+      this.nome = dados.nome();
+    }
+    if (dados.via() != null) {
+      this.via = dados.via();
+    }
+    if (dados.lote() != null) {
+      this.lote = dados.lote();
+    }
+    if (dados.quantidade() != 0) {
+      this.quantidade = dados.quantidade();
+    }
+    if (dados.validade() != null) {
+      this.validade = dados.validade();
+    }
+    if (dados.laboratorio() != null) {
+      this.laboratorio = dados.laboratorio();
+    }
+  }
 }
