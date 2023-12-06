@@ -14,7 +14,7 @@ public class ListarRemedios_usecase {
   private RemedioRepository repository;
 
   public List<DadosListagemRemedio> execute (){
-    return this.repository.findAll()
+    return this.repository.findAllByAtivoTrue()
     .stream()
     .map(DadosListagemRemedio::new)
     .toList();

@@ -11,18 +11,16 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
 import farmacia_estoque.infra.controllers.dtos.DadosAtualizarRemedio;
 import farmacia_estoque.infra.controllers.dtos.DadosCadastrarRemedio;
 import farmacia_estoque.infra.controllers.dtos.DadosListagemRemedio;
-import farmacia_estoque.infra.entities.Remedio;
 import farmacia_estoque.infra.usecases.AtualizarRemedio_usecase;
 import farmacia_estoque.infra.usecases.CadastrarRemedios_usecase;
 import farmacia_estoque.infra.usecases.DeletarRemedio_usecase;
+import farmacia_estoque.infra.usecases.InativarRemedio_usecase;
 import farmacia_estoque.infra.usecases.ListarRemedios_usecase;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
-import jakarta.websocket.server.PathParam;
 
 @RestController
 @RequestMapping("/remedios")
@@ -35,6 +33,8 @@ public class RemediosController {
   private AtualizarRemedio_usecase atualizarRemedioUC;
   @Autowired
   private DeletarRemedio_usecase deletarRemedioUC;
+  @Autowired
+  private InativarRemedio_usecase inativarRemedioUC;
 
 
   @PostMapping
@@ -57,5 +57,11 @@ public class RemediosController {
   @Transactional
   public void deletar (@PathVariable Long id){
     deletarRemedioUC.execute(id);
+  } 
+
+  @DeleteMapping("inativar/{id}")
+  @Transactional
+  public void inativar (@PathVariable Long id){
+    inativarRemedioUC.execute(id);
   } 
 }

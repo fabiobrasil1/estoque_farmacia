@@ -44,6 +44,7 @@ public class Remedio {
   private String lote;
   private int quantidade;
   private  LocalDate validade;
+  private boolean ativo;
 
   @Enumerated(EnumType.STRING)
   private Via via;
@@ -70,5 +71,9 @@ public class Remedio {
     if (dados.laboratorio() != null) {
       this.laboratorio = dados.laboratorio();
     }
+  }
+
+  public void inativarRemeio(){
+    this.ativo = false;
   }
 }
