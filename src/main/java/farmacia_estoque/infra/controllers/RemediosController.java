@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import farmacia_estoque.infra.controllers.dtos.DadosAtualizarRemedio;
 import farmacia_estoque.infra.controllers.dtos.DadosCadastrarRemedio;
 import farmacia_estoque.infra.controllers.dtos.DadosListagemRemedio;
+import farmacia_estoque.infra.usecases.AtivarRemedio_usecase;
 import farmacia_estoque.infra.usecases.AtualizarRemedio_usecase;
 import farmacia_estoque.infra.usecases.CadastrarRemedios_usecase;
 import farmacia_estoque.infra.usecases.DeletarRemedio_usecase;
@@ -35,8 +36,10 @@ public class RemediosController {
   private DeletarRemedio_usecase deletarRemedioUC;
   @Autowired
   private InativarRemedio_usecase inativarRemedioUC;
+  @Autowired
+  private AtivarRemedio_usecase ativarRemedioUC;
 
-
+  
   @PostMapping
   @Transactional
   public void cadastrar(@RequestBody @Valid DadosCadastrarRemedio dados) {
@@ -63,5 +66,10 @@ public class RemediosController {
   @Transactional
   public void inativar (@PathVariable Long id){
     inativarRemedioUC.execute(id);
+  } 
+  @PutMapping("ativar/{id}")
+  @Transactional
+  public void ativar (@PathVariable Long id){
+    ativarRemedioUC.execute(id);
   } 
 }

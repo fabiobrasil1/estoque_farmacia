@@ -76,4 +76,7 @@ public class Remedio {
   public void inativarRemeio(){
     this.ativo = false;
   }
+  public void ativarRemeio(){
+    this.ativo = true;
+  }
 }
