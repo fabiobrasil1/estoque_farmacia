@@ -3,6 +3,7 @@ package farmacia_estoque.infra.controllers;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import farmacia_estoque.infra.controllers.dtos.DadosAtualizarRemedio;
 import farmacia_estoque.infra.controllers.dtos.DadosCadastrarRemedio;
+import farmacia_estoque.infra.controllers.dtos.DadosDetalhamentoRemedio;
 import farmacia_estoque.infra.controllers.dtos.DadosListagemRemedio;
 import farmacia_estoque.infra.usecases.AtivarRemedio_usecase;
 import farmacia_estoque.infra.usecases.AtualizarRemedio_usecase;
@@ -47,29 +49,35 @@ public class RemediosController {
   }
 
   @GetMapping
-  public List<DadosListagemRemedio> listar (){
-    return listarRemediosUC.execute();
+  public ResponseEntity<List<DadosListagemRemedio>> listar (){
+    var lista = listarRemediosUC.execute();
+    return ResponseEntity.ok(lista);
   } 
 
   @PutMapping
   @Transactional
-  public void atualizar (@RequestBody @Valid DadosAtualizarRemedio dados){
-    atualizarRemedioUC.execute(dados);
+  public ResponseEntity<DadosDetalhamentoRemedio> atualizar (@RequestBody @Valid DadosAtualizarRemedio dados){
+    return atualizarRemedioUC.execute(dados);
   } 
+
   @DeleteMapping("/{id}")
   @Transactional
-  public void deletar (@PathVariable Long id){
+  public ResponseEntity<Void> deletar (@PathVariable Long id){
     deletarRemedioUC.execute(id);
+    return ResponseEntity.noContent().build();
   } 
 
   @DeleteMapping("inativar/{id}")
   @Transactional
-  public void inativar (@PathVariable Long id){
+  public ResponseEntity<Void> inativar (@PathVariable Long id){
     inativarRemedioUC.execute(id);
+    return ResponseEntity.noContent().build();
   } 
+
   @PutMapping("ativar/{id}")
   @Transactional
-  public void ativar (@PathVariable Long id){
+  public ResponseEntity<Void> ativar (@PathVariable Long id){
     ativarRemedioUC.execute(id);
+    return ResponseEntity.noContent().build();
   } 
 }
