@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.util.UriComponentsBuilder;
+
 import farmacia_estoque.infra.controllers.dtos.DadosAtualizarRemedio;
 import farmacia_estoque.infra.controllers.dtos.DadosCadastrarRemedio;
 import farmacia_estoque.infra.controllers.dtos.DadosDetalhamentoRemedio;
@@ -44,8 +46,8 @@ public class RemediosController {
   
   @PostMapping
   @Transactional
-  public void cadastrar(@RequestBody @Valid DadosCadastrarRemedio dados) {
-   cadastrarRemediosUC.execute(dados);
+  public ResponseEntity<DadosDetalhamentoRemedio> cadastrar(@RequestBody @Valid DadosCadastrarRemedio dados, UriComponentsBuilder uriBuilder) {
+   return cadastrarRemediosUC.execute(dados, uriBuilder);
   }
 
   @GetMapping

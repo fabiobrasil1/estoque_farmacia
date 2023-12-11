@@ -34,6 +34,7 @@ public class Remedio {
     this.quantidade = dados.quantidade();
     this.validade = dados.validade();
     this.laboratorio = dados.laboratorio();
+    this.ativo = true;
   }
 
   @Id 
