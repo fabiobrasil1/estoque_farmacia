@@ -22,6 +22,7 @@ import farmacia_estoque.infra.usecases.AtivarRemedio_usecase;
 import farmacia_estoque.infra.usecases.AtualizarRemedio_usecase;
 import farmacia_estoque.infra.usecases.CadastrarRemedios_usecase;
 import farmacia_estoque.infra.usecases.DeletarRemedio_usecase;
+import farmacia_estoque.infra.usecases.DetalharRemedio_usecase;
 import farmacia_estoque.infra.usecases.InativarRemedio_usecase;
 import farmacia_estoque.infra.usecases.ListarRemedios_usecase;
 import jakarta.transaction.Transactional;
@@ -42,6 +43,8 @@ public class RemediosController {
   private InativarRemedio_usecase inativarRemedioUC;
   @Autowired
   private AtivarRemedio_usecase ativarRemedioUC;
+  @Autowired
+  private DetalharRemedio_usecase detalhaRemedioUC;
 
   
   @PostMapping
@@ -54,6 +57,12 @@ public class RemediosController {
   public ResponseEntity<List<DadosListagemRemedio>> listar (){
     var lista = listarRemediosUC.execute();
     return ResponseEntity.ok(lista);
+  } 
+
+  @GetMapping("/{id}")
+  public ResponseEntity<DadosDetalhamentoRemedio> detalhaRemedio (@PathVariable Long id){
+    return detalhaRemedioUC.execute(id);
+    
   } 
 
   @PutMapping

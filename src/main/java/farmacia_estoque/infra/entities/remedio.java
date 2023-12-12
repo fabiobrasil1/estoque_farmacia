@@ -80,4 +80,7 @@ public class Remedio {
   public void ativarRemeio(){
     this.ativo = true;
   }
+
+  public Remedio(Remedio remedioDetalhes) {
+  }
 }
